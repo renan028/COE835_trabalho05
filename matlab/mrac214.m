@@ -25,7 +25,7 @@ Y = tf(Z,kp*P);
 Ym = tf(Zm,km*Pm);
 A0 = tf(1);
 
-[theta_1, theta_n, theta_2n, theta_2] = diophantina(Y,Ym,A0);
+[theta_1, theta_n, theta_2, theta_2n, L] = find2DOFparameters(Y,Ym,A0);
 
 y      = x(1);
 ym     = x(2);
