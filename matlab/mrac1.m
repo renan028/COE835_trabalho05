@@ -5,27 +5,13 @@
 %  Script para simular o exemplo
 %
 %  MRAC  : n  = 2     First order plant
-%          n* = 1     Relative degree
+%          n* = 2     Relative degree
 %          np = 4     Adaptive parameters
 %
 %======================================================================
-function dx=mrac214(t,x)
+function dx=mrac1(t,x)
 
-global P Z kp Pm Zm km dc a w gama1 gama2;
-
-Z = [1 1];
-P = [1 -2 1];
-kp = 1;
-
-Zm = [1 1.5];
-Pm = [1 3 2];
-km = 1;
-
-Y = tf(Z,kp*P);
-Ym = tf(Zm,km*Pm);
-A0 = tf(1);
-
-[theta_1, theta_n, theta_2, theta_2n, L] = find2DOFparameters(Y,Ym,A0);
+global P Z kp Pm Zm km L dc a w gama1 gama2;
 
 y      = x(1);
 ym     = x(2);
@@ -37,7 +23,13 @@ theta2 = x(4);
 %--------------------------
 r = dc + a*sin(w*t);
 
-%omega = [ y ; r];
+omega = [uf' y yf' r]';
+y = thetas'*phi;
+dy = [y(2:end) u-(flip(P(2:end))*y)]';
+
+u = theta'*omega;
+duf = [u-(flip(L(2:end))*uf)]';
+dyf = [y-(flip(L(2:end))'*yf)]';
 
 e  = y - ym;
 

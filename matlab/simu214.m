@@ -15,22 +15,31 @@ clear;
 clc;
 
 disp('-------------------------------')
-disp('Script para simular o exemplo 9')
+disp('Script para simular o trabalho 5')
 disp(' ')
-disp('Caso: Planta ............. n = 1')
+disp('Caso: Planta ............. n = 2')
 disp('      Grau relativo ..... n* = 1')
-disp('      Parâmetros ........ np = 2')
+disp('      Parâmetros ........ np = 4')
 disp(' ')
 disp('Algoritmo: MRAC direto')
 disp(' ')
 disp('-------------------------------')
 
-global ap kp km am dc a w gama1 gama2;
+global Z P Zm Pm kp km L dc a w gama1 gama2;
 
-ap =  0;
-kp =  0.5;
-am =  1;
-km =  1;
+Z = [1 1];
+P = [1 1 -2];
+kp = 1;
+
+Zm = [1];
+Pm = [1 1];
+km = 1;
+
+Y = tf(kp*Z,P);
+Ym = tf(km*Zm,Pm);
+A0 = tf([1]);
+
+[theta_1, theta_n, theta_2, theta_2n, L] = find2DOFparameters(Y,Ym,A0);
 
 dc = 1;
 a  = 1;
