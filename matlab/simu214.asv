@@ -15,83 +15,70 @@ clear;
 clc;
 
 disp('-------------------------------')
-disp('Script para simular o exemplo 9')
+disp('Script para simular o trabalho 5')
 disp(' ')
-disp('Caso: Planta ............. n = 1')
+disp('Caso: Planta ............. n = 2')
 disp('      Grau relativo ..... n* = 1')
-disp('      Parâmetros ........ np = 2')
+disp('      Parâmetros ........ np = 4')
 disp(' ')
 disp('Algoritmo: MRAC direto')
 disp(' ')
 disp('-------------------------------')
 
-global ap kp km am dc a w gama1 gama2;
+global Z P Zm Pm kp km L gamma thetas theta_2n;
 
-ap =  0;
-kp =  0.5;
-am =  1;
-km =  1;
+w1 = .63493;
+w2 = 4.5669;
 
-dc = 1;
-a  = 1;
-w  = 1;
+Z = [1 1];
+P = [1 4 4];
+kp = 1;
 
-gama1 = 1
-gama2 = 1
+Zm = [1];
+Pm = [1 1];
+km = 1;
 
-y0  = 5
+Y = tf(kp*Z,P);
+Ym = tf(km*Zm,Pm);
+A0 = tf([2]);
+
+[theta_1, theta_n, theta_2, theta_2n, L] = find2DOFparameters(Y,Ym,A0);
+thetas = [theta_1, theta_n, theta_2, theta_2n]'; 
+
+gamma = 10*eye(length(thetas));
+
+y0  = [0 0]';
 ym0 = 0;
-theta0 = [0 0];
-
-%-----------------------
-theta1s = -(ap + am)/kp
-theta2s = km/kp
+uf0 = [0];
+yf0 = [0];
+theta0 = zeros(length(thetas),1);
 
 %-----------------------
 clf;
-tf = 100;
+tf = 50;
 
-init = [y0 ym0 theta0];
+init = [y0' ym0 uf0' yf0' theta0']';
 
 options = odeset('OutputFcn','odeplot');
-[T,X] = ode23s('mrac112',tf,init,options);
+[T,X] = ode23s('mrac1',tf,init,options);
 
 y      = X(:,1);
-ym     = X(:,2);
-theta1 = X(:,3);
-theta2 = X(:,4);
+ym     = X(:,3);
+theta =  X(:,6:end);
 
 e =  y - ym;
-r = dc + a.*sin(w.*T);
-modtt = sqrt(theta1.^2 + theta2.^2);
-
+r =  10*sin(0.63493.*T) + 25*sin(4.5669.*T);
 figure(1)
 clf
-subplot(211)
-plot(T,r,T,ym,T,y);grid;shg
-legend('r','y_m','y','Location','SouthEast')
-print -depsc2 fig02a
+plot(T,ym,T,y);grid;shg
+legend('y_m','y','Location','SouthEast')
+print -depsc2 fig01a
 
 figure(2)
 clf
-subplot(211)
-plot(T,theta1,T,theta2);grid;shg
-legend('\theta_1','\theta_2','Location','SouthEast')
-print -depsc2 fig02b
-
-figure(3)
-clf
-subplot(211)
 plot(T,e);grid;shg
 legend('e','Location','SouthEast')
-print -depsc2 fig02c
-
-figure(4)
-clf
-subplot(211)
-plot(T,modtt);grid;shg
-legend('|\theta|','Location','SouthEast')
-print -depsc2 fig02d
+print -depsc2 fig01b
 
 %---------------------------------------------------------------------
 
