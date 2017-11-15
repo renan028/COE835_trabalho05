@@ -25,10 +25,10 @@ disp('Algoritmo: MRAC direto')
 disp(' ')
 disp('-------------------------------')
 
-global Z P Zm Pm kp km L dc a w gama1 gama2;
+global Z P Zm Pm kp km L gamma thetas theta_2n;
 
 Z = [1 1];
-P = [1 1 -2];
+P = [1 -2 1];
 kp = 1;
 
 Zm = [1];
@@ -40,39 +40,31 @@ Ym = tf(km*Zm,Pm);
 A0 = tf([1]);
 
 [theta_1, theta_n, theta_2, theta_2n, L] = find2DOFparameters(Y,Ym,A0);
+thetas = [theta_1, theta_n, theta_2, theta_2n]'; 
 
-dc = 1;
-a  = 1;
-w  = 1;
+gamma = 100*eye(length(thetas));
 
-gama1 = 1
-gama2 = 1
-
-y0  = 0
+y0  = 0;
 ym0 = 0;
-theta0 = [0 0];
-
-%-----------------------
-theta1s = -(ap + am)/kp
-theta2s = km/kp
+uf0 = [0];
+yf0 = [0];
+theta0 = zeros(length(thetas),1);
 
 %-----------------------
 clf;
-tf = 25;
+tf = 50;
 
-init = [y0 ym0 theta0];
+init = [y0 ym0 uf0' yf0' theta0']';
 
 options = odeset('OutputFcn','odeplot');
-[T,X] = ode23s('mrac112',tf,init,options);
+[T,X] = ode23s('mrac1',tf,init,options);
 
 y      = X(:,1);
 ym     = X(:,2);
-theta1 = X(:,3);
-theta2 = X(:,4);
+theta =  X(:,5:end);
 
 e =  y - ym;
-r = dc + a.*sin(w.*T);
-modtt = sqrt(theta1.^2 + theta2.^2);
+r = 10*sin(0.9.*T) + 10*sin(1.9.*T);
 
 figure(1)
 clf
@@ -84,23 +76,9 @@ print -depsc2 fig01a
 figure(2)
 clf
 subplot(211)
-plot(T,theta1,T,theta2);grid;shg
-legend('\theta_1','\theta_2','Location','SouthEast')
-print -depsc2 fig01b
-
-figure(3)
-clf
-subplot(211)
 plot(T,e);grid;shg
 legend('e','Location','SouthEast')
-print -depsc2 fig01c
-
-figure(4)
-clf
-subplot(211)
-plot(T,modtt);grid;shg
-legend('|\theta|','Location','SouthEast')
-print -depsc2 fig01d
+print -depsc2 fig01b
 
 %---------------------------------------------------------------------
 
