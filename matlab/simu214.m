@@ -42,7 +42,7 @@ P = [1 4 4];
 kp = 1;
 
 Zm = [1];
-Pm = [1 1];
+Pm = [1 5];
 km = 1;
 
 H = tf(kp*Z,P);
@@ -52,16 +52,16 @@ A0 = tf([1]);
 %% Init
 [theta_1, theta_n, theta_2, theta_2n, L] = find2DOFparameters(H,Hm,A0); 
 
-gamma = 10*eye(4);
+gamma = 20*eye(4);
 
-y0  = [5 0]';
+y0  = [0 0]';
 ym0 = 0;
 uf0 = [0]';
 yf0 = [0]';
 theta0 = zeros(4,1);
 
 clf;
-tfinal = 200;
+tfinal = 100;
 
 init = [y0' ym0 uf0' yf0' theta0']';
 
@@ -100,17 +100,26 @@ theta =  X(:,6:end);
 
 e =  y - ym;
 r = A(1)*sin(w(1).*T) + A(2)*sin(w(2).*T);
-figure(1)
-clf
-plot(T,ym,T,y);grid;shg
-legend('y_m','y','Location','SouthEast')
-print -depsc2 fig01a
 
-figure(2)
+%Set matlab interpreter to latex
+set(groot, 'defaultAxesTickLabelInterpreter','latex');
+set(groot, 'defaultLegendInterpreter','latex');
+set(groot, 'defaultTextInterpreter','latex');
+
+figure(1)
 clf
 plot(T,e);grid;shg
 legend('e','Location','SouthEast')
-print -depsc2 fig01b
+title('$y_{m2}$')
+print -depsc2 en2ym2
+
+figure(2)
+clf
+plot(T,theta(:,1)-theta_1,T,theta(:,2)-theta_n,T,theta(:,3)-theta_2,T,theta(:,4)-theta_2n);grid;shg
+legend('$\tilde{\theta_1}$','$\tilde{\theta_n}$','$\tilde{\theta_2}$','$\tilde{\theta_{2n}}$','Location','SouthEast')
+title('$y_{m2}$')
+print -depsc2 tiln2ym2
+
 
 %---------------------------------------------------------------------
 

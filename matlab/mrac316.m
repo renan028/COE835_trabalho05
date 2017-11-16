@@ -41,6 +41,6 @@ e  = y(1) - ym(1);
 dtheta = -sign(kp)*gamma*omega*e;
 
 %--------------------------
-dx = [dy' dym duf' dyf' dtheta']';    %Translation
+dx = [dy' dym' duf' dyf' dtheta']';    %Translation
 
 %---------------------------

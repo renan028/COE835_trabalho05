@@ -1,0 +1,42 @@
+%---------------------------------------------------------------------
+\section{Resultados das simulações}
+
+%Simulação utilizando \HI{\texttt{Matlab/Simulink}}.
+
+%\subsection{Gradiente Normalizado}
+
+Nas simulações, procuramos avaliar o comportamento do sistema para as seguintes condições:
+%
+\begin{enumerate*}[label=(\roman*)]
+\item condições iniciais $\theta(0)$ e $y(0)$;
+\item Parâmetros da planta e do modelo;
+\item ganho de adaptação $\Gamma$.
+\end{enumerate*}
+
+Apresentaremos os resultados obtidos através de simulações no ambiente \HI{\texttt{Matlab/Simulink}} e os discutiremos na próxima seção.
+
+\subsection{Simulação \#1}
+
+Inicialmente, desejamos verificar o comportamento do sistema para variações nas
+condições iniciais.
+
+\bigskip
+
+\textbf{\underline{Simulação 1.1}: sistema de 2$^\text{a}$ ordem}
+%
+\begin{align*}
+  y &= \frac{s+1}{s^2+4s+4}u\,,  &  \Lambda &= s+1\,, & \HI{\theta(0) &=
+  \mathbf{0}, \mathbf{1}}\,, \\
+  \gamma &= 10 \, \textbf{I}_4\,, & r &= 10\textrm{0.63sin}(t) +
+  25\textrm{4.5sin}(t) \,.
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/en2t0.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/tiln2t0.eps} 
+\end{figure}

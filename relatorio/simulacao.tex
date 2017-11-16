@@ -1,0 +1,196 @@
+%---------------------------------------------------------------------
+\section{Resultados das simulações}
+
+%Simulação utilizando \HI{\texttt{Matlab/Simulink}}.
+
+%\subsection{Gradiente Normalizado}
+
+Nas simulações, procuramos avaliar o comportamento do sistema para as seguintes condições:
+%
+\begin{enumerate*}[label=(\roman*)]
+\item condições iniciais $\theta(0)$ e $y(0)$;
+\item Parâmetros da planta e do modelo;
+\item ganho de adaptação $\Gamma$.
+\end{enumerate*}
+
+Apresentaremos os resultados obtidos através de simulações no ambiente \HI{\texttt{Matlab/Simulink}} e os discutiremos na próxima seção.
+
+\subsection{Simulação \#1}
+
+Inicialmente, desejamos verificar o comportamento do sistema para variações nas
+condições iniciais.
+
+\bigskip
+
+\textbf{\underline{Simulação 1.1}: sistema de 2$^\text{a}$ ordem, $\theta(0)$}
+%
+\begin{align*}
+  y &= \frac{s+1}{s^2+4s+4}u\,,  &  y_m &= \frac{1}{s+1}r\,, & \Lambda &=
+  s+1,\\ \theta(0) &= \HI{0} \, \textrm{e} \, \HI{1}\,, & y(0) &= 5 \,, &
+  \gamma &= 10 \, \textbf{I}_4\,, \\ r &= 10\textrm{sin}(0.63t) +
+  25\textrm{sin}(4.5t) \, .
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/en2t0.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/en2t1.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/tiln2t0.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/tiln2t1.eps} 
+\end{figure}
+
+\textbf{\underline{Simulação 1.2}: sistema de 3$^\text{a}$ ordem, $\theta(0)$}
+%
+
+\textbf{\underline{Simulação 1.3}: sistema de 2$^\text{a}$ ordem, $y(0)$}
+%
+\begin{align*}
+  y &= \frac{s+1}{s^2+4s+4}u\,,  &  y_m &= \frac{1}{s+1}r\,, & \Lambda &=
+  s+1,\\ \theta(0) &= 0 \,, & y(0) &= \HI{0} \text{e} \HI{5} \,, &
+  \gamma &= 20 \, \textbf{I}_4\,, \\ r &= 10\textrm{sin}(0.63t) +
+  25\textrm{sin}(4.5t) \, .
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/en2y0.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/en2y5.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/tiln2y0.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/tiln2y5.eps} 
+\end{figure}
+
+\textbf{\underline{Simulação 1.4}: sistema de 3$^\text{a}$ ordem, $y(0)$}
+
+% -----------------------------------------------------------------------------
+
+\subsection{Simulação \#2}
+
+Verificamos o comportamento do sistema para variações no parämetro de adaptação
+$\Gamma$.
+
+\bigskip
+
+\textbf{\underline{Simulação 2.1}: sistema de 2$^\text{a}$ ordem}
+%
+\begin{align*}
+  y &= \frac{s+1}{s^2+4s+4}u\,,  &  y_m &= \frac{1}{s+1}r\,, & \Lambda &=
+  s+1,\\ \theta(0) &= 0 \,, & y(0) &= 0 \,, &
+  \gamma &= \HI{1} \, \textbf{I}_4 \text{e} \HI{20} \, \textbf{I}_4\,, \\ r &=
+  10\textrm{sin}(0.63t) + 25\textrm{sin}(4.5t) \, .
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/en2gamma1.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/en2gamma20.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/tiln2gamma1.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/tiln2gamma20.eps} 
+\end{figure}
+
+\textbf{\underline{Simulação 2.2}: sistema de 3$^\text{a}$ ordem}
+%
+% -----------------------------------------------------------------------------
+
+\subsection{Simulação \#3}
+
+Verificamos o comportamento do sistema para variações na planta e modelo.
+
+\bigskip
+
+\textbf{\underline{Simulação 3.1}: sistema de 2$^\text{a}$ ordem, planta}
+%
+\begin{align*}
+  y &= \frac{s+1}{s^2+4s+4}u\, \text{e} \frac{s+1}{s^2-4s+4}u\,,  &  y_m &=
+  \frac{1}{s+1}r\,, & \Lambda &= s+1,\\ \theta(0) &= 0 \,, & y(0) &= 0 \,, &
+  \gamma &= 20 \, \textbf{I}_4\,, \\ r &=
+  10\textrm{sin}(0.63t) + 25\textrm{sin}(4.5t) \, .
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/en2yp1.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/en2yp2.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/tiln2yp1.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/tiln2yp2.eps} 
+\end{figure}
+
+\textbf{\underline{Simulação 3.2}: sistema de 3$^\text{a}$ ordem, planta}
+
+\textbf{\underline{Simulação 3.3}: sistema de 2$^\text{a}$ ordem, modelo}
+%
+\begin{align*}
+  y &= \frac{s+1}{s^2+4s+4}u\, &  y_m &=
+  \frac{1}{s+1}r\, \text{e} \frac{1}{s+5}r\,,  & \Lambda &= s+1,\\ \theta(0) &=
+  0 \,, & y(0) &= 0 \,, & \gamma &= 20 \, \textbf{I}_4\,, \\ r &=
+  10\textrm{sin}(0.63t) + 25\textrm{sin}(4.5t) \, .
+\end{align*}
+ 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/en2ym1.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/en2ym2.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/tiln2ym1.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/tiln2ym2.eps} 
+\end{figure}
+
+\textbf{\underline{Simulação 3.4}: sistema de 3$^\text{a}$ ordem, modelo}

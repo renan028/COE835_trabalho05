@@ -1,0 +1,123 @@
+%---------------------------------------------------------------------
+\section{MRAC direto}
+
+O controle adaptativo de modelo de referência (MRAC) é um método de controle
+adaptativo com uma fundação teoria rigorosa e sistemática, possui promissora e
+atraente perspectiva de aplicação, e seu projeto é simples e conciso. O objetivo
+do MRAC é garantir que a saída de um sistema controlado (planta)) seja igual a
+saída de um dado modelo de referência, e a estabilidade do ssitema em malha
+fechada.Quando os parâmetros da planta são desconhecidos, leis adaptativas são
+necessárias para a atualização dos parâmetros.
+
+Considere um sistema linear invariante no tempo descrito pela equação
+diferencial (Eq. \ref{eq:planta}):
+%
+\begin{equation}
+P(s) \, [y](t) = Z(s) \, [u](t),
+\label{eq:planta}
+\end{equation}
+
+onde $y(t) \in \mathbb{R}$ e $u(t) \in \mathbb{R}$ são os sinais medidos de
+saída e entrada do sistema, sendo:
+%
+\begin{gather}
+P(s) = s^n + p_{n-1}s^{n-1}+\ldots + p_1s+p_0\,\\
+Z(s) = z_ms^m + z_{m-1}s^{m-1}+\ldots + z_1s+z_0 \,,
+\label{eq:poly}
+\end{gather}
+%
+os polinômios em $s$, com $s$ sendo o operador de diferencial
+$s[x](t)=\dot{x}(t)$. $p_i$, $i = 0,1,\ldots,n-1$ e $z_i$, $i=0,1,\ldots,m$ ($n>m$) são os parâmetros desconhecidos da planta.
+
+
+O objetivo do controle é: dado um modelo de referência, descrito como
+
+\begin{equation}
+P_m(s)[y_m](t) = r(t),
+\end{equation}
+
+onde $P_m(s)$ é um polinômio estável mônico e $r(t)$ é a entrada de referência
+limitada, encontrar uma lei de controle $u(t)$ tal que todo o sistema de malha
+fechada produza sinais limitados e a saída da planta $y(t)$ rastreie o modelo
+de referência $y_m(t)$ assintoticamente. A estrutura exige algumas premissas:
+\begin{enumerate}
+  \item $Z(s)$ é um polinômio estável;
+  \item O sinal de $k_p$ é conhecido;
+  \item O grau relativo da planta é conhecido;
+  \item A ordem da planta é conhecida.
+\end{enumerate}
+
+A estrutura do controlador é 2DOF, como pode ser visto na figura
+\ref{mrac}. Escolhe-se então um polinômio estável $\Lambda(s) =
+s^n+\lambda_{n-1}s^{n-1}+\ldots+\lambda_1s+\lambda_0$ para filtrar a entrada e a
+saída da planta com o filtro $\frac{1}{\Lambda(s)}$. A equa;áo do controlador
+]e descrita como:
+\begin{equation}
+u(t) = \theta_1^\intercal\omega_1(t)+\theta_2^\intercal\omega_2(t)+\theta_n
+y(t)+ \theta_{2n} r(t),
+\end{equation}
+
+onde o filtro é descrito pela realização de estados:
+
+\begin{gather}
+\dot{\omega}_1(t) = A_\lambda \, \omega_1(t) + bu(t)\,,\\
+\dot{\omega}_2(t) = A_\lambda \, \omega_2(t) + by(t)\,,
+\label{eq:statespace}
+\end{gather}
+%
+onde $\omega_1(t) \in \mathbb{R}^n$, $\omega_2(t) \in \mathbb{R}^n$ e:
+%
+\begin{equation}
+A_\lambda = 
+\begin{bmatrix}
+    0      & 1      & 0      & \dots  & 0      & 0      \\
+    0      & 0      & 1      & 0      & \dots  & 0      \\
+    \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+    0      & 0      & \dots  & \dots  & 0      & 1      \\
+    -\lambda_0 & -\lambda_1 & \dots & \dots & -\lambda_{n-2} & -\lambda_{n-1} 
+\end{bmatrix}
+\in \mathbb{R}^{n \times n} \,, \quad b =
+\begin{bmatrix}
+    0  \\
+    \vdots  \\
+    0 \\
+    1 \\ 
+\end{bmatrix}
+\in \mathbb{R}^n \,.
+\label{eq:statespace}
+\end{equation}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/mrac.png}
+  \caption{Estrutura MRAC.}
+  \label{mrac} 
+\end{figure}
+
+Os valores ideais para o controle $\theta^*$ podem ser obtidos como já
+descrito no trabalho 4, se os parâmetros da planta fossem conhecidos. Como não é
+o caso, consideramos $\theta$ como uma estimativa dos parämetros ideais e
+formulamos a lei de controle:
+
+\begin{gather}
+u(t) = \theta^\intercal\omega, \\
+\omega(t) = \left[\omega_1(t)^\intercal \quad y(t) \quad \omega_2(t)^\intercal
+\quad r(t)\right]^\intercal, \\
+\theta = \left[\theta_1 \quad \theta_n \quad \theta_2 \quad \theta_{2n}\right]
+\end{gather}
+
+Definimos o erro como $e(t) = y(t) - y_m(t)$, e é possível demonstrar por
+Lyapunov que, variando $\theta$ pela lei
+
+\begin{equation}
+\dot{\theta}(t) = -\textrm{sign}[k_p]\Gamma\omega(t)e(t),
+\end{equation}
+
+o erro converge assintoticamente para zero, quando $\Gamma =
+\Gamma^\intercal > 0$ é uma matrix de ganhos positiva definida.
+
+Neste trabalho, serão consideradas plantas de segunda e terceira ordens com grau
+relativo 1 ($n^*=1$). Iremos simular e discutir o comportamento do erro e das
+saídas para variações das condições iniciais dos parâmetros estimados
+($\theta(0)$) e da planta ($y(0)$), do ganho de adaptação $\Gamma$ e para
+diferentes parâmetros da planta e modelo.

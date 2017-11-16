@@ -1,0 +1,268 @@
+\section{Resultados das simulações: \textit{Least-Squares Normalizado}}
+
+Nas simulações, procuramos avaliar o comportamento do sistema para as seguintes condições:
+%
+\begin{enumerate*}[label=(\roman*)]
+\item condição inicial $\theta(0)$;
+\item sinal de referência $r(t)$;
+\item matriz de ganho inicial $P_0 = P(0)$.
+\end{enumerate*}
+
+Apresentaremos os resultados obtidos através de simulações no ambiente \HI{\texttt{Matlab/Simulink}} e os discutiremos na próxima seção.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Simulação \#1}% 1 ordem
+
+Inicialmente, desejamos verificar o comportamento do sistema para variações no
+sinal de referência $r(t)$ para podermos analisar a influência da persistência
+de excitação.
+
+\bigskip
+
+\textbf{\underline{Simulação 1.1}: sistema de 1$^\text{a}$ ordem}
+%
+\begin{align*}
+  y &= \frac{1}{s+2}u\,,  &  \Lambda &= \frac{1}{s+1}\,, & \theta(0) &= \mathbf{0}\,, \\
+  P_0 &= 10\,\textbf{I}_2\,, & r &= \HI{1, $1+5\textrm{sin}(t)$}\, \,.
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/tiltheta/sim01_r1r2.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/modtheta/sim01_r1r2.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/epsilon/sim01_r1r2.eps} 
+\end{figure}
+
+\bigskip
+%\newpage%
+
+\textbf{\underline{Simulação 1.2}: sistema de 2$^\text{a}$ ordem}
+%
+\begin{align*}
+  y &= \frac{s+1}{s^2+4s+4}u\,,  &  \Lambda &= \frac{1}{s^2+2s+1}\,, & \theta(0)
+  &= \mathbf{0}\,,\\
+  P_0 &= 10 \, \textbf{I}_4 \,, & r &= \HI{10\textrm{sin}(0.63493t)+25\textrm{sin}(4.5669t)}
+  \,\, \text{e} \,\,
+  \HI{10\textrm{sin}(0.63493t)} \,.
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/tiltheta/sim02_r1r2.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/modtheta/sim02_r1r2.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/epsilon/sim02_r1r2.eps} 
+\end{figure}
+
+\bigskip
+% \newpage%
+
+\textbf{\underline{Simulação 1.3}: sistema de 3$^\text{a}$ ordem}
+%
+\begin{align*}
+  y &= \frac{s^2+s+1}{s^3+s^2+s+1}u\,,  &  \Lambda &=
+  \frac{1}{s^3+3s^2+3s+1}\,, \\
+  P_0 &= 10 \, \textbf{I}_6 \,, & \theta(0) &= \mathbf{0}\,,\\
+  r &= \HI{10\textrm{sin}(0.53326t)+10\textrm{sin}(4.8095t)+10\textrm{sin}(0.023171t)} & r &= \HI{10\textrm{sin}(0.53326t)+10\textrm{sin}(4.8095t)}\,\,.
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/tiltheta/sim03_r1r2.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/modtheta/sim03_r1r2.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/epsilon/sim03_r1r2.eps} 
+\end{figure}
+
+%---------------------------------------------------------------------
+\subsection{Simulação \#2}
+
+Na segunda simulação, observamos o comportamento do sistema para variações do ganho inicial $P_0$.
+
+\bigskip
+
+\textbf{\underline{Simulação 2.1}: sistema de 1$^\text{a}$ ordem}
+%
+\begin{align*}
+  y &= \frac{1}{s+2}u\,,  &  \Lambda &= \frac{1}{s+1}\,, & \theta(0) &= \mathbf{0}\,, \\
+  P_0 &= \HI{10\,$\textbf{I}_2$ , 5\,$\textbf{I}_2$} \,, & r &= 1 + 5\,\textrm{sin}(t)\, \,.
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/tiltheta/sim01_p10p5.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/modtheta/sim01_p10p5.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/epsilon/sim01_p10p5.eps} 
+\end{figure}
+
+\bigskip
+% \newpage%
+
+\textbf{\underline{Simulação 2.2}: sistema de 2$^\text{a}$ ordem}
+%
+\begin{align*}
+  y &= \frac{s+1}{s^2+4s+4}u\,,  &  \Lambda &= \frac{1}{s^2+2s+1}\,, & \theta(0)
+  &= \mathbf{0}\,,\\
+  P_0 &= \HI{10\,$\textbf{I}_4$ , 5\,$\textbf{I}_4$}\,, & r &=
+  10\textrm{sin}(0.63493t)+25\textrm{sin}(4.5669t) \,.
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/tiltheta/sim02_p10p5.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/modtheta/sim02_p10p5.eps}
+  
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/epsilon/sim02_p10p5.eps} 
+\end{figure}
+
+\bigskip
+% \newpage%
+
+\textbf{\underline{Simulação 2.3}: sistema de 3$^\text{a}$ ordem}
+%
+\begin{align*}
+  y &= \frac{s+s+1}{s^2+s^2+s+1}u\,,  &  \Lambda &=
+  \frac{1}{s^3+3s^2+3s+1}\,, & \theta(0) &= \mathbf{0}\bigskip\,,\\
+  P_0 &= \HI{10\,$\textbf{I}_6$ , 5\,$\textbf{I}_6$}\,, & r
+  &=10\textrm{sin}(0.53326t)+10\textrm{sin}(4.8095t)+10\textrm{sin}(0.023171t) \,.
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/tiltheta/sim03_p10p5.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/modtheta/sim03_p10p5.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/epsilon/sim03_p10p5.eps} 
+\end{figure}
+
+%---------------------------------------------------------------------
+\subsection{Simulação \#3}
+
+Na terceira simulação, observamos o comportamento do sistema para variações nas
+condições iniciais do vetor de parâmetros estimados $\theta$.
+
+\bigskip%
+
+\textbf{\underline{Simulação 3.1}: sistema de 1$^\text{a}$ ordem}
+%
+\begin{align*}
+  y &= \frac{1}{s+2}u\,,  &  \Lambda &= \frac{1}{s+1}\,, & \theta(0) &= \HI{$\mathbf{0}$ \,, $\mathbf{1}$} \,, \\
+  P_0 &= 10 \,\textbf{I}_2\,, & r &= 1+5\textrm{sin}(t) \,.
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/tiltheta/sim01_theta01theta02.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/modtheta/sim01_theta01theta02.eps}
+  
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/epsilon/sim01_theta01theta02.eps} 
+\end{figure}
+
+\bigskip
+% \newpage%
+
+\textbf{\underline{Simulação 3.2}: sistema de 2$^\text{a}$ ordem}
+%
+\begin{align*}
+  y &= \frac{s+1}{s^2+4s+4}u\,,  &  \Lambda &= \frac{1}{s^2+2s+1}\,, & \theta(0)
+  &= \HI{$\mathbf{0}$ \,, $\mathbf{1}$} \,, \\
+  %
+  P_0 &= 10\,\textbf{I}_4\,, & r &= 30\textrm{sin}(0.63493t)+25\textrm{sin}(4.5669t)\,.
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/tiltheta/sim02_theta01theta02.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/modtheta/sim02_theta01theta02.eps}
+  
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/epsilon/sim02_theta01theta02.eps} 
+\end{figure}
+
+\bigskip
+% \newpage%
+
+\textbf{\underline{Simulação 3.3}: sistema de 3$^\text{a}$ ordem}
+%
+\begin{align*}
+  y &= \frac{s^2+s+1}{s^3+s^2+s+1}u\,,  &  \Lambda &=
+  \frac{1}{s^3+3s^2+3s+1}\,, & \theta(0) &= \HI{$\mathbf{0}$ \,, $\mathbf{1}$} \,, \\
+  P_0 &= 10 \,\textbf{I}_6\,, & r
+  &=10\textrm{sin}(0.53326t)+10\textrm{sin}(4.8095t)+10\textrm{sin}(0.023171t) \, \,.
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/tiltheta/sim03_theta01theta02.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/modtheta/sim03_theta01theta02.eps} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12.5cm]{figs/ls/epsilon/sim03_theta01theta02.eps} 
+\end{figure}
+%---------------------------------------------------------------------
