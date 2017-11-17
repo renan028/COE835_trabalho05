@@ -11,13 +11,13 @@
 %======================================================================
 function dx=mrac316(t,x)
 
-global Ay By Aym Bym Auf Buf Ayf Byf kp gamma w A;
+global Ay By Aym Bym Auf Buf Ayf Byf kp gamma w A Pg Pmg Lg;
 
-y      = x(1:3);
-ym     = x(4);
-uf     = x(5:6);
-yf     = x(7:8);
-theta  = x(9:end);
+y      = x(1:Pg);
+ym     = x(Pg+1:Pg+Pmg);
+uf     = x(Pg+Pmg+1:Pg+Pmg+Lg);
+yf     = x(Pg+Pmg+Lg+1:Pg+Pmg+Lg+Lg);
+theta  = x(Pg+Pmg+Lg+Lg+1:end);
 
 %--------------------------
 r = A(1)*sin(w(1)*t) + A(2)*sin(w(2)*t) + A(3)*sin(w(3)*t);

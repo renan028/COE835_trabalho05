@@ -25,7 +25,7 @@ disp('Algoritmo: MRAC direto')
 disp(' ')
 disp('-------------------------------')
 
-global Ay By Aym Bym Auf Buf Ayf Byf kp km gamma w A;
+global Ay By Aym Bym Auf Buf Ayf Byf kp km gamma w A Pg Pmg Lg;
 
 %% r
 w1 = 1;
@@ -53,19 +53,10 @@ A0 = tf([1]);
 
 %% Init
 [theta_1, theta_n, theta_2, theta_2n, L] = find2DOFparameters(H,Hm,A0); 
+thetag = length(theta_1)+length(theta_2)+2;
+gamma = 100*eye(thetag);
 
-gamma = 100*eye(6);
 
-y0  = [0 0 0]';
-ym0 = 0;
-uf0 = [0 0]';
-yf0 = [0 0]';
-theta0 = zeros(6,1);
-
-clf;
-tfinal = 300;
-
-init = [y0' ym0 uf0' yf0' theta0']';
 
 
 %% Sistemas
@@ -89,12 +80,29 @@ ss_yf = canon(ss(tf(1,L)), 'companion');
 Ayf = ss_yf.A';
 Byf = ss_yf.C'; % Forma canônica observável
 
+%% Init
+Pg = length(P)-1;
+Pmg = length(Pm)-1;
+Lg = length(L)-1;
+
+y0  = zeros(Pg,1);
+ym0 = zeros(Pmg,1);
+uf0 = zeros(Lg,1);
+yf0 = zeros(Lg,1);
+theta0 = zeros(thetag,1);
+
+clf;
+tfinal = 300;
+
+init = [y0' ym0' uf0' yf0' theta0']';
+
+
 %% Plots
 [T,X] = ode23s('mrac316',tfinal,init,'');
 
 y      = X(:,1);
-ym     = X(:,4);
-theta =  X(:,9:end);
+ym     = X(:,Pg+1);
+theta =  X(:,Pg+Pmg+Lg+Lg+1:end);
 
 e =  y - ym;
 r = A(1)*sin(w(1).*T) + A(2)*sin(w(2).*T) + A(3)*sin(w(3).*T);
