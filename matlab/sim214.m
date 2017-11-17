@@ -19,7 +19,7 @@ disp('Script para simular o trabalho 5')
 disp(' ')
 disp('Caso: Planta ............. n = 2')
 disp('      Grau relativo ..... n* = 1')
-disp('      Parâmetros ........ np = 4')
+disp('      Parï¿½metros ........ np = 4')
 disp(' ')
 disp('Algoritmo: MRAC direto')
 disp(' ')
@@ -70,25 +70,25 @@ init = [y0' ym0 uf0' yf0' theta0']';
 % Planta
 ss_H = canon(ss(H), 'companion');
 Ay = ss_H.A';
-By = ss_H.C'; % Forma canônica observável
+By = ss_H.C'; % Forma canï¿½nica observï¿½vel
 Cy = ss_H.B';
 
 % Modelo
 ss_Hm = canon(ss(Hm), 'companion');
 Aym = ss_Hm.A';
-Bym = ss_Hm.C'; % Forma canônica observável
+Bym = ss_Hm.C'; % Forma canï¿½nica observï¿½vel
 Cym = ss_Hm.B';
 
 % Filtro u
 ss_uf = canon(ss(tf(1,L)), 'companion');
 Auf = ss_uf.A';
-Buf = ss_uf.C'; % Forma canônica observável
+Buf = ss_uf.C'; % Forma canï¿½nica observï¿½vel
 Cuf = ss_uf.B';
 
 % Filtro y
 ss_yf = canon(ss(tf(1,L)), 'companion');
 Ayf = ss_yf.A';
-Byf = ss_yf.C'; % Forma canônica observável
+Byf = ss_yf.C'; % Forma canï¿½nica observï¿½vel
 Cyf = ss_yf.B';
 
 %% Plots
@@ -120,6 +120,4 @@ legend('$\tilde{\theta_1}$','$\tilde{\theta_n}$','$\tilde{\theta_2}$','$\tilde{\
 title('$y_{m2}$')
 print -depsc2 tiln2ym2
 
-
 %---------------------------------------------------------------------
-

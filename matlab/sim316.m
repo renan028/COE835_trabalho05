@@ -19,7 +19,7 @@ disp('Script para simular o trabalho 5')
 disp(' ')
 disp('Caso: Planta ............. n = 3')
 disp('      Grau relativo ..... n* = 1')
-disp('      Parâmetros ........ np = 6')
+disp('      Parametros ........ np = 6')
 disp(' ')
 disp('Algoritmo: MRAC direto')
 disp(' ')
@@ -56,29 +56,26 @@ A0 = tf([1]);
 thetag = length(theta_1)+length(theta_2)+2;
 gamma = 100*eye(thetag);
 
-
-
-
 %% Sistemas
 % Planta
 ss_H = canon(ss(H), 'companion');
 Ay = ss_H.A';
-By = ss_H.C'; % Forma canônica observável
+By = ss_H.C'; % Forma canonica observavel
 
 % Modelo
 ss_Hm = canon(ss(Hm), 'companion');
 Aym = ss_Hm.A';
-Bym = ss_Hm.C'; % Forma canônica observável
+Bym = ss_Hm.C'; % Forma canonica observavel
 
 % Filtro u
 ss_uf = canon(ss(tf(1,L)), 'companion');
 Auf = ss_uf.A';
-Buf = ss_uf.C'; % Forma canônica observável
+Buf = ss_uf.C'; % Forma canonica observavel
 
 % Filtro y
 ss_yf = canon(ss(tf(1,L)), 'companion');
 Ayf = ss_yf.A';
-Byf = ss_yf.C'; % Forma canônica observável
+Byf = ss_yf.C'; % Forma canonica observavel
 
 %% Init
 Pg = length(P)-1;

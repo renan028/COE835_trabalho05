@@ -25,16 +25,16 @@ r = A(1)*sin(w(1)*t) + A(2)*sin(w(2)*t) + A(3)*sin(w(3)*t);
 omega = [uf' y(1) yf' r]';
 u = theta'*omega;
 
-%------- Cálculo de y --------
+%------- Calculo de y --------
 dy = Ay*y + By*u;
 
-%------- Cálculo de ym --------
+%------- Calculo de ym --------
 dym = Aym*ym + Bym*r;
 
-%------- Cálculo de uf --------
+%------- Calculo de uf --------
 duf = Auf*uf + Buf*u;
 
-%------- Cálculo de yf --------
+%------- Calculo de yf --------
 dyf = Ayf*yf + Byf*y(1);
 
 e  = y(1) - ym(1);
