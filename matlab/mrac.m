@@ -9,18 +9,21 @@
 %          np = 4     Adaptive parameters
 %
 %======================================================================
-function dx=mrac214(t,x)
+function dx=mrac(t,x)
 
-global Ay By Aym Bym Auf Buf Ayf Byf kp gamma w A;
+global Ay By Aym Bym Auf Buf Ayf Byf kp gamma w A gP gPm;
 
-y      = x(1:2);
-ym     = x(3);
-uf     = x(4);
-yf     = x(5);
-theta  = x(6:end);
+y      = x(1:gP);
+ym     = x(gP+1:gP+gPm);
+uf     = x(gP+gPm+1:gP+gPm+gP-1);
+yf     = x(gP+gPm+gP:gP+gPm+gP-1+gP-1);
+theta  = x(gP+gPm+gP-1+gP:end);
 
 %--------------------------
-r = A(1)*sin(w(1)*t) + A(2)*sin(w(2)*t);
+r = 0;
+for i=1:gP
+    r = r + A(i)*sin(w(i)*t);
+end
 
 omega = [uf' y(1) yf' r]';
 u = theta'*omega;
