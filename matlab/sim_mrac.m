@@ -50,7 +50,7 @@ Byf = ss_yf.C';
 Cyf = ss_yf.B';
 
 % Initialization
-y0  = y0_1;
+y0  = y0_1*ones(gP,1);
 ym0 = zeros(gPm,1);
 uf0 = zeros(gP-1,1);
 yf0 = zeros(gP-1,1);
@@ -63,8 +63,8 @@ gamma = gamma_1*eye(2*gP);
 % Simulation
 [T_1,X_1] = ode23s('mrac',tfinal,init,'');
 y_1      = X_1(:,1);
-ym_1     = X_1(:,gP + 1);
-theta_1 =  X_1(:,3*gP + gPm - 1:end);
+ym_1     = X_1(:,gP+1);
+theta_1 =  X_1(:,3*gP+gPm-1:end);
 tiltheta_1 = theta_1 - thetas.*ones(length(theta_1),2*gP);
 modtt_1 = sqrt(sum(theta_1.^2,2));
 e0_1 =  y_1 - ym_1;
@@ -107,7 +107,7 @@ Byf = ss_yf.C';
 Cyf = ss_yf.B';
 
 % Initialization
-y0  = y0_1;
+y0  = y0_1*ones(gP,1);
 ym0 = zeros(gPm,1);
 uf0 = zeros(gP-1,1);
 yf0 = zeros(gP-1,1);
@@ -120,8 +120,8 @@ gamma = gamma_2*eye(2*gP);
 % Simulation
 [T_2,X_2] = ode23s('mrac',tfinal,init,'');
 y_2      = X_2(:,1);
-ym_2     = X_2(:,gP + 1);
-theta_2 =  X_2(:,3*gP + gPm - 1:end);
+ym_2     = X_2(:,gP+1);
+theta_2 =  X_2(:,3*gP+gPm-1:end);
 tiltheta_2 = theta_2 - thetas.*ones(length(theta_2),2*gP);
 modtt_2 = sqrt(sum(theta_2.^2,2));
 e0_2 =  y_2 - ym_2;
@@ -166,7 +166,7 @@ Byf = ss_yf.C';
 Cyf = ss_yf.B';
 
 % Initialization
-y0  = y0_1;
+y0  = y0_1*ones(gP,1);
 ym0 = zeros(gPm,1);
 uf0 = zeros(gP-1,1);
 yf0 = zeros(gP-1,1);
@@ -179,8 +179,8 @@ gamma = gamma_1*eye(2*gP);
 % Simulation
 [T_2,X_2] = ode23s('mrac',tfinal,init,'');
 y_2      = X_2(:,1);
-ym_2     = X_2(:,gP + 1);
-theta_2 =  X_2(:,3*gP + gPm - 1:end);
+ym_2     = X_2(:,gP+1);
+theta_2 =  X_2(:,3*gP+gPm-1:end);
 tiltheta_2 = theta_2 - thetas.*ones(length(theta_2),2*gP);
 modtt_2 = sqrt(sum(theta_2.^2,2));
 e0_2 =  y_2 - ym_2;
@@ -225,7 +225,7 @@ Byf = ss_yf.C';
 Cyf = ss_yf.B';
 
 % Initialization
-y0  = y0_1;
+y0  = y0_1*ones(gP,1);
 ym0 = zeros(gPm,1);
 uf0 = zeros(gP-1,1);
 yf0 = zeros(gP-1,1);
@@ -238,8 +238,8 @@ gamma = gamma_1*eye(2*gP);
 % Simulation
 [T_2,X_2] = ode23s('mrac',tfinal,init,'');
 y_2      = X_2(:,1);
-ym_2     = X_2(:,gP + 1);
-theta_2 =  X_2(:,3*gP + gPm - 1:end);
+ym_2     = X_2(:,gP+1);
+theta_2 =  X_2(:,3*gP+gPm-1:end);
 tiltheta_2 = theta_2 - thetas.*ones(length(theta_2),2*gP);
 modtt_2 = sqrt(sum(theta_2.^2,2));
 e0_2 =  y_2 - ym_2;
@@ -258,7 +258,7 @@ P = P_1; % Plant parameters
 kp = kp_1;
 gP = gP_1;
 Pm = Pm_1; %Model parameters
-gPm = gPm_2;
+gPm = gPm_1;
 
 [t1, tn, t2, t2n, L] = find2DOFparameters(P,Pm,A0); %Find ideal thetas and filter
 thetas = [t1, tn, t2, t2n];
@@ -284,7 +284,7 @@ Byf = ss_yf.C';
 Cyf = ss_yf.B';
 
 % Initialization
-y0  = y0_2;
+y0  = y0_2*ones(gP,1);
 ym0 = zeros(gPm,1);
 uf0 = zeros(gP-1,1);
 yf0 = zeros(gP-1,1);
@@ -297,8 +297,8 @@ gamma = gamma_1*eye(2*gP);
 % Simulation
 [T_2,X_2] = ode23s('mrac',tfinal,init,'');
 y_2      = X_2(:,1);
-ym_2     = X_2(:,gP + 1);
-theta_2 =  X_2(:,3*gP + gPm - 1:end);
+ym_2     = X_2(:,gP+1);
+theta_2 =  X_2(:,3*gP+gPm-1:end);
 tiltheta_2 = theta_2 - thetas.*ones(length(theta_2),2*gP);
 modtt_2 = sqrt(sum(theta_2.^2,2));
 e0_2 =  y_2 - ym_2;
