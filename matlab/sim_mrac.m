@@ -28,6 +28,7 @@ gPm = gPm_1;
 
 [t1, tn, t2, t2n, L] = find2DOFparameters(P,Pm,A0); %Find ideal thetas and filter
 thetas = [t1, tn, t2, t2n];
+thetas_1 = thetas;
 
 ss_H = canon(ss(P), 'companion'); % Planta
 Ay = ss_H.A';

@@ -96,10 +96,18 @@ set(gcf,'position',fig_pos);
 
 plot(T_1,modtt_1);grid on;hold on;
 plot(T_2,modtt_2);
-plot(T_1,norm(thetas)*ones(1,length(T_1)));hold off;
+
+if (changed == 2) || (changed == 3)
+    plot(T_1,norm(thetas_1)*ones(1,length(T_1)));
+    plot(T_2,norm(thetas)*ones(1,length(T_2)));
+    hold off;
+    legend(str1,str2,'$||\theta_1^*||$','$||\theta_2^*||$','Location','SouthEast');
+else
+    plot(T_1,norm(thetas)*ones(1,length(T_1)));hold off;
+    legend(str1,str2,'$||\theta^*||$','Location','SouthEast');
+end
 
 title('$||\theta||$');
-legend(str1,str2,'$||\theta^*||$','Location','SouthEast');
 
 if PRINT
     print(path_modtheta,'-depsc2','-painters')
