@@ -33,22 +33,18 @@ thetas_1 = thetas;
 ss_H = canon(ss(P), 'companion'); % Planta
 Ay = ss_H.A';
 By = ss_H.C';
-Cy = ss_H.B';
 
 ss_Hm = canon(ss(Pm), 'companion'); % Modelo
 Aym = ss_Hm.A';
 Bym = ss_Hm.C';
-Cym = ss_Hm.B';
 
 ss_uf = canon(ss(tf(1,L)), 'companion'); % Filtro u
 Auf = ss_uf.A';
 Buf = ss_uf.C';
-Cuf = ss_uf.B';
 
 ss_yf = canon(ss(tf(1,L)), 'companion'); % Filtro y
 Ayf = ss_yf.A';
 Byf = ss_yf.C';
-Cyf = ss_yf.B';
 
 % Initialization
 y0  = y0_1*ones(gP,1);
@@ -62,7 +58,7 @@ init = [y0' ym0' uf0' yf0' theta0']';
 gamma = gamma_1*eye(2*gP);
 
 % Simulation
-[T_1,X_1] = ode23s('mrac',tfinal,init,'');
+[T_1,X_1] = ode23s('mrac',tfinal,init,options);
 y_1      = X_1(:,1);
 ym_1     = X_1(:,gP+1);
 theta_1 =  X_1(:,3*gP+gPm-1:end);
@@ -70,7 +66,7 @@ tiltheta_1 = theta_1 - thetas.*ones(length(theta_1),2*gP);
 modtt_1 = sqrt(sum(theta_1.^2,2));
 e0_1 =  y_1 - ym_1;
 r_1 = 0;
-for i=1:gP
+for i=1:length(A)
     r_1 = r_1 + A(i)*sin(w(i).*T_1);
 end
 
@@ -90,22 +86,18 @@ thetas = [t1, tn, t2, t2n];
 ss_H = canon(ss(P), 'companion'); % Planta
 Ay = ss_H.A';
 By = ss_H.C';
-Cy = ss_H.B';
 
 ss_Hm = canon(ss(Pm), 'companion'); % Modelo
 Aym = ss_Hm.A';
 Bym = ss_Hm.C';
-Cym = ss_Hm.B';
 
 ss_uf = canon(ss(tf(1,L)), 'companion'); % Filtro u
 Auf = ss_uf.A';
 Buf = ss_uf.C';
-Cuf = ss_uf.B';
 
 ss_yf = canon(ss(tf(1,L)), 'companion'); % Filtro y
 Ayf = ss_yf.A';
 Byf = ss_yf.C';
-Cyf = ss_yf.B';
 
 % Initialization
 y0  = y0_1*ones(gP,1);
@@ -119,7 +111,7 @@ init = [y0' ym0' uf0' yf0' theta0']';
 gamma = gamma_2*eye(2*gP);
 
 % Simulation
-[T_2,X_2] = ode23s('mrac',tfinal,init,'');
+[T_2,X_2] = ode23s('mrac',tfinal,init,options);
 y_2      = X_2(:,1);
 ym_2     = X_2(:,gP+1);
 theta_2 =  X_2(:,3*gP+gPm-1:end);
@@ -127,7 +119,7 @@ tiltheta_2 = theta_2 - thetas.*ones(length(theta_2),2*gP);
 modtt_2 = sqrt(sum(theta_2.^2,2));
 e0_2 =  y_2 - ym_2;
 r_2 = 0;
-for i=1:gP
+for i=1:length(A)
     r_2 = r_2 + A(i)*sin(w(i).*T_2);
 end
 
@@ -149,22 +141,18 @@ thetas = [t1, tn, t2, t2n];
 ss_H = canon(ss(P), 'companion'); % Planta
 Ay = ss_H.A';
 By = ss_H.C';
-Cy = ss_H.B';
 
 ss_Hm = canon(ss(Pm), 'companion'); % Modelo
 Aym = ss_Hm.A';
 Bym = ss_Hm.C';
-Cym = ss_Hm.B';
 
 ss_uf = canon(ss(tf(1,L)), 'companion'); % Filtro u
 Auf = ss_uf.A';
 Buf = ss_uf.C';
-Cuf = ss_uf.B';
 
 ss_yf = canon(ss(tf(1,L)), 'companion'); % Filtro y
 Ayf = ss_yf.A';
 Byf = ss_yf.C';
-Cyf = ss_yf.B';
 
 % Initialization
 y0  = y0_1*ones(gP,1);
@@ -178,7 +166,7 @@ init = [y0' ym0' uf0' yf0' theta0']';
 gamma = gamma_1*eye(2*gP);
 
 % Simulation
-[T_2,X_2] = ode23s('mrac',tfinal,init,'');
+[T_2,X_2] = ode23s('mrac',tfinal,init,options);
 y_2      = X_2(:,1);
 ym_2     = X_2(:,gP+1);
 theta_2 =  X_2(:,3*gP+gPm-1:end);
@@ -186,7 +174,7 @@ tiltheta_2 = theta_2 - thetas.*ones(length(theta_2),2*gP);
 modtt_2 = sqrt(sum(theta_2.^2,2));
 e0_2 =  y_2 - ym_2;
 r_2 = 0;
-for i=1:gP
+for i=1:length(A)
     r_2 = r_2 + A(i)*sin(w(i).*T_2);
 end
 
@@ -208,22 +196,18 @@ thetas = [t1, tn, t2, t2n];
 ss_H = canon(ss(P), 'companion'); % Planta
 Ay = ss_H.A';
 By = ss_H.C';
-Cy = ss_H.B';
 
 ss_Hm = canon(ss(Pm), 'companion'); % Modelo
 Aym = ss_Hm.A';
 Bym = ss_Hm.C';
-Cym = ss_Hm.B';
 
 ss_uf = canon(ss(tf(1,L)), 'companion'); % Filtro u
 Auf = ss_uf.A';
 Buf = ss_uf.C';
-Cuf = ss_uf.B';
 
 ss_yf = canon(ss(tf(1,L)), 'companion'); % Filtro y
 Ayf = ss_yf.A';
 Byf = ss_yf.C';
-Cyf = ss_yf.B';
 
 % Initialization
 y0  = y0_1*ones(gP,1);
@@ -237,7 +221,7 @@ init = [y0' ym0' uf0' yf0' theta0']';
 gamma = gamma_1*eye(2*gP);
 
 % Simulation
-[T_2,X_2] = ode23s('mrac',tfinal,init,'');
+[T_2,X_2] = ode23s('mrac',tfinal,init,options);
 y_2      = X_2(:,1);
 ym_2     = X_2(:,gP+1);
 theta_2 =  X_2(:,3*gP+gPm-1:end);
@@ -245,7 +229,7 @@ tiltheta_2 = theta_2 - thetas.*ones(length(theta_2),2*gP);
 modtt_2 = sqrt(sum(theta_2.^2,2));
 e0_2 =  y_2 - ym_2;
 r_2 = 0;
-for i=1:gP
+for i=1:length(A)
     r_2 = r_2 + A(i)*sin(w(i).*T_2);
 end
 
@@ -267,22 +251,18 @@ thetas = [t1, tn, t2, t2n];
 ss_H = canon(ss(P), 'companion'); % Planta
 Ay = ss_H.A';
 By = ss_H.C';
-Cy = ss_H.B';
 
 ss_Hm = canon(ss(Pm), 'companion'); % Modelo
 Aym = ss_Hm.A';
 Bym = ss_Hm.C';
-Cym = ss_Hm.B';
 
 ss_uf = canon(ss(tf(1,L)), 'companion'); % Filtro u
 Auf = ss_uf.A';
 Buf = ss_uf.C';
-Cuf = ss_uf.B';
 
 ss_yf = canon(ss(tf(1,L)), 'companion'); % Filtro y
 Ayf = ss_yf.A';
 Byf = ss_yf.C';
-Cyf = ss_yf.B';
 
 % Initialization
 y0  = y0_2*ones(gP,1);
@@ -296,7 +276,7 @@ init = [y0' ym0' uf0' yf0' theta0']';
 gamma = gamma_1*eye(2*gP);
 
 % Simulation
-[T_2,X_2] = ode23s('mrac',tfinal,init,'');
+[T_2,X_2] = ode23s('mrac',tfinal,init,options);
 y_2      = X_2(:,1);
 ym_2     = X_2(:,gP+1);
 theta_2 =  X_2(:,3*gP+gPm-1:end);
@@ -304,7 +284,7 @@ tiltheta_2 = theta_2 - thetas.*ones(length(theta_2),2*gP);
 modtt_2 = sqrt(sum(theta_2.^2,2));
 e0_2 =  y_2 - ym_2;
 r_2 = 0;
-for i=1:gP
+for i=1:length(A)
     r_2 = r_2 + A(i)*sin(w(i).*T_2);
 end
 

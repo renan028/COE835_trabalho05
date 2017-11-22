@@ -1,32 +1,13 @@
 %---------------------------------------------------------------------
 \section{Discussão}
 
-% A \textbf{simulação \#1} mostra o comportamento do sistema para variações no sinal de referência. Como esperado e demonstrado na seção 3.5 do livro \textit{Adaptive
-% Control Design and Analysis} de Gang Tao, a convergência dos parâmetros só é
-% garantida quando o sinal de referência possui o mesmo número de
-% frequências que o número de parâmetros desconhecidos (excitações persistentes).
-% 
-% Na simulação 1.1, o sistema é de primeira ordem com dois
-% parâmetros desconhecidos. Logo, são necessárias duas frequências diferentes no
-% sinal de referência para garantir que o erro de estimação $\tilde{\theta}$
-% convirja para zero. Isso é verificado, já que $\tilde{\theta}$ converge para
-% zero quando $r=1+5\textrm{sin}(t)$ (frequência em $\omega=0, \omega=1,
-% \omega=-1$) e não converge para zero quando o sinal possui apenas uma frequência
-% ($r=1$). Um comportamento semelhante é verificado para os sistemas de segunda e
-% terceira ordens (simulações 1.2 e 1.3, respectivamente). Vale observar que, em
-% todos os casos, $\epsilon = \tilde{\theta}^\intercal \phi$ converge para zero,
-% como é provado por Lyapunov.  Isso significa que, apesar de a estimação dos
-% parâmetros não ter garantia de convergência para zero, os vetores $\tilde{\theta}$ e $\phi$ entram em quadratura, ou seja, ficam ortogonais.
-% 
-% A \textbf{simulação \#2} mostra o comportamento do sistema para variações no
-% ganho de adaptação $\Gamma$ para o método do gradiente normalizado. Nesse caso, a variação da estimação de parâmetros é descrita pela fórmula: $\dot{\theta}(t) = -\Gamma \, \phi(t) \, \epsilon(t) / m^2(t)$. Portanto, a variação é proporcional ao ganho de adaptação, quanto maior o parâmetro, mais rápida será a estimação. Já no caso do método \textit{least-squares} normalizado, o valor inicial do ganho não impacta muito no regime transitório.
-% 
-% A \textbf{simulação \#3} mostra o comportamento do sistema para variações nas condições iniciais. A rapidez da convergência depende de quão próximo os parâmetros estimados estão dos parâmetros reais. Na simulação 3.1, por exemplo, a convergência é mais rápida quando $\theta = \textbf{0}, \theta^* = \left[1 \, -1\right]$, porém, na simulação 3.3, ela é mais rápida quando $\theta = \textbf{1}$, pois $\theta^* = \left[1 \, 1 \, 1 \, 0 \, 2 \, 2\right]$.
-% 
-% Observe que o comportamento dos sistemas é semelhante para ambos os métodos
-% utilizados: \textit{Gradiente normalizado} e \textit{least-square
-% normalizado}. Pode ser provado que o método \textit{Gradiente
-% normalizado} garante convergência exponencial do erro para zero (Tao 3.5.2). Já o método \textit{least-square normalizado} apenas garante convergência, mas não
-% exponencial (Tao 3.5.3).
-% 
-% Também foi constatada, mas não relatada aqui, a interessante propriedade do método \textit{least-square normalizado} em que $P^{-1} \, \tilde{\theta} = P_0^{-1} \, \tilde{\theta}(0) = \text{constante} \,$.
+Os resultados apresentados neste trabalho são semelhantes aos apresentados nos trabalhos anteriores sobre MRAC, só que aplicado a sistemas de primeira ordem. Neste trabalho, são abordados sistemas de segunda e terceira ordens com grau relativo 1. O polinômio $A_0(s)$ foi definido como mais simples possível, enquanto os sinais de referência foram escolhidos de modo a ter o número de frequências necessárias para haver excitação persistente.
+
+A \textbf{simulação \#1} mostra o comportamento do sistema para variações no
+ganho de adaptação $\Gamma$. Para o sistema de $2^a$ ordem escolhido, um ganho maior resultou em uma estimação mais rápida dos parâmetros, convergindo para os reais. Já para o sistema de $3^a$ ordem, o ganho maior resultou em uma estimação mais demorada e em ambos os casos o vetor de parâmetros entrou em quadratura com o regressor. Os erros de saída convergiram para zero em todos os casos.
+
+A \textbf{simulação \#2} mostra o comportamento do sistema para variações na condição inicial $y(0)$. Como previsto, condições iniciais da planta mais longe em relação às condições iniciais do modelo de referência resultam em um transitório muito maior, o que é um problema conhecido de controle adaptativo.
+
+A \textbf{simulação \#3} apresenta o comportamento do sistema para variações na função de transferência da planta $P(s)$. Nota-se que o controle encontra maior dificuldade em fazer uma planta com dinâmica mais rápida rastrear um modelo de referência mais lento.
+
+Finalmente, na \textbf{simulação \#4}, os modelos de referência $P_m(s)$ foram variados e verificou-se que, escolhendo um modelo de referência com dinâmica mais rápida e não SPR, a convergência é mais lenta para a planta de segunda ordem. Já para a planta de terceira ordem, a convergência foi mais rápida para o modelo de referência com dinâmica mais rápida.
