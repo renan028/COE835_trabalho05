@@ -33,11 +33,11 @@ switch changed
         
     case 4
         y0_str_1 = '[\,';
-        for i=1:length(y0_1)
-            if i ~= length(y0_1)
-                y0_str_1 = strcat(y0_str_1,num2str(y0_1(i)),'\,\,');
+        for i=1:length(y0)
+            if i ~= length(y0)
+                y0_str_1 = strcat(y0_str_1,num2str(y0_1),'\,\,');
             else
-                y0_str_1 = strcat(y0_str_1,num2str(y0_1(i)),'\,]');
+                y0_str_1 = strcat(y0_str_1,num2str(y0_1),'\,]');
             end
         end
         y0_str_2 = '[\,';
@@ -87,7 +87,7 @@ end
 set(h2,'Position',[h2.Position(1), h2.Position(2) + pos_pct*(h1.Position(2) - h2.Position(2)), h2.Position(3), h2.Position(4)]);
 
 if PRINT
-    print(path_tiltheta,'-depsc2')
+    print(path_tiltheta,'-depsc2','-painters')
 end
 
 %--------------- Fig2: mod theta -------------
@@ -102,7 +102,7 @@ title('$||\theta||$');
 legend(str1,str2,'$||\theta^*||$','Location','SouthEast');
 
 if PRINT
-    print(path_modtheta,'-depsc2')
+    print(path_modtheta,'-depsc2','-painters')
 end
 
 %--------------- Fig3: e -------------
@@ -116,5 +116,5 @@ title('$e_0$');
 legend(str1,str2,'Location','SouthEast');
 
 if PRINT
-    print(path_e0,'-depsc2')
+    print(path_e0,'-depsc2','-painters')
 end

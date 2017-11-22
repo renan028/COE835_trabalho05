@@ -17,180 +17,216 @@ Apresentaremos os resultados obtidos através de simulações no ambiente \HI{\text
 
 \subsection{Simulação \#1}
 
-Inicialmente, desejamos verificar o comportamento do sistema para variações nas
-condições iniciais.
+Inicialmente, verificamos o comportamento do sistema para variações no \textbf{parâmetro de adaptação} $\Gamma$.
 
 \bigskip
 
-\textbf{\underline{Simulação 1.1}: sistema de 2$^\text{a}$ ordem, $\theta(0)$}
+\textbf{\underline{Simulação 1.1}: sistema de 2$^\text{a}$ ordem}
 %
 \begin{align*}
-  y &= \frac{s+1}{s^2+4s+4}u\,,  &  y_m &= \frac{1}{s+1}r\,, & \Lambda &=
-  s+1,\\ \theta(0) &= \HI{0} \, \textrm{e} \, \HI{1}\,, & y(0) &= 5 \,, &
-  \gamma &= 10 \, \textbf{I}_4\,, \\ r &= 10\textrm{sin}(0.63t) +
-  25\textrm{sin}(4.5t) \, .
+  y &= \frac{s+1}{s^2+4s+4}u \,, &  y_m &=
+  \frac{1}{s+1}r\,, & A_0 &= 1,\\ \theta(0) &= \mathbf{0} \,, & y(0) &= \textbf{0} \,, &
+  \gamma &= \HI{20} \textbf{I}_4 \,, \, \textrm{e} \, \HI{1} \, \textbf{I}_4\,, \\ r &=
+  10\textrm{sin}(0.635t) + 25\textrm{sin}(4.567t) \, .
 \end{align*}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/en2t0.eps} 
+  \includegraphics[width=12cm]{figs/tiltheta/sim02_gamma20gamma1.eps}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/en2t1.eps} 
+  \includegraphics[width=12cm]{figs/modtheta/sim02_gamma20gamma1.eps}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/tiln2t0.eps} 
+  \includegraphics[width=12cm]{figs/e0/sim02_gamma20gamma1.eps}
 \end{figure}
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=12cm]{figs/tiln2t1.eps} 
-\end{figure}
+\bigskip
 
-\textbf{\underline{Simulação 1.2}: sistema de 3$^\text{a}$ ordem, $\theta(0)$}
-%
-
-\textbf{\underline{Simulação 1.3}: sistema de 2$^\text{a}$ ordem, $y(0)$}
+\textbf{\underline{Simulação 1.2}: sistema de 3$^\text{a}$ ordem}
 %
 \begin{align*}
-  y &= \frac{s+1}{s^2+4s+4}u\,,  &  y_m &= \frac{1}{s+1}r\,, & \Lambda &=
-  s+1,\\ \theta(0) &= 0 \,, & y(0) &= \HI{0} \text{e} \HI{5} \,, &
-  \gamma &= 20 \, \textbf{I}_4\,, \\ r &= 10\textrm{sin}(0.63t) +
-  25\textrm{sin}(4.5t) \, .
+  y &= \frac{s^2+2s+1}{s^3+6s^2+12s+8}u \,, &  y_m &=
+  \frac{1}{s+1}r\,, & A_0 &= 1,\\ \theta(0) &= \mathbf{0} \,, & y(0) &= \textbf{0} \,, &
+  \gamma &= \HI{20} \textbf{I}_6 \,, \, \textrm{e} \, \HI{1} \, \textbf{I}_6\,, \\ r &= 10\textrm{sin}(t) + 25\textrm{sin}(2.1t) + 10\textrm{sin}(3.5t) \, .
 \end{align*}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/en2y0.eps} 
+  \includegraphics[width=12cm]{figs/tiltheta/sim03_gamma20gamma1.eps}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/en2y5.eps} 
+  \includegraphics[width=12cm]{figs/modtheta/sim03_gamma20gamma1.eps}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/tiln2y0.eps} 
+  \includegraphics[width=12cm]{figs/e0/sim03_gamma20gamma1.eps}
 \end{figure}
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=12cm]{figs/tiln2y5.eps} 
-\end{figure}
-
-\textbf{\underline{Simulação 1.4}: sistema de 3$^\text{a}$ ordem, $y(0)$}
-
-% -----------------------------------------------------------------------------
+%---------------------------------------------------------------------
 
 \subsection{Simulação \#2}
 
-Verificamos o comportamento do sistema para variações no parämetro de adaptação
-$\Gamma$.
+Verificamos agora o comportamento do sistema para variações na \textbf{condição inicial} $y(0)$.
 
 \bigskip
 
 \textbf{\underline{Simulação 2.1}: sistema de 2$^\text{a}$ ordem}
 %
 \begin{align*}
-  y &= \frac{s+1}{s^2+4s+4}u\,,  &  y_m &= \frac{1}{s+1}r\,, & \Lambda &=
-  s+1,\\ \theta(0) &= 0 \,, & y(0) &= 0 \,, &
-  \gamma &= \HI{1} \, \textbf{I}_4 \text{e} \HI{20} \, \textbf{I}_4\,, \\ r &=
-  10\textrm{sin}(0.63t) + 25\textrm{sin}(4.5t) \, .
+  y &= \frac{s+1}{s^2+4s+4}u\,,  &  y_m &= \frac{1}{s+1}r\,, & A_0 &= 1,\\ \theta(0) &= \mathbf{0} \,, & y(0) &= \HI{$\mathbf{0}$ \,, $\mathbf{10}$} \,, &
+  \gamma &= 20 \, \textbf{I}_4\,, \\ r &= 10\textrm{sin}(0.635t) + 25\textrm{sin}(4.567t) \, .
 \end{align*}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/en2gamma1.eps} 
+  \includegraphics[width=12cm]{figs/tiltheta/sim02_y01y02.eps}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/en2gamma20.eps} 
+  \includegraphics[width=12cm]{figs/modtheta/sim02_y01y02.eps}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/tiln2gamma1.eps} 
+  \includegraphics[width=12cm]{figs/e0/sim02_y01y02.eps}
 \end{figure}
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=12cm]{figs/tiln2gamma20.eps} 
-\end{figure}
+\bigskip
 
 \textbf{\underline{Simulação 2.2}: sistema de 3$^\text{a}$ ordem}
 %
+\begin{align*}
+  y &= \frac{s^2+2s+1}{s^3+6s^2+12s+8}u \,, &  y_m &=
+  \frac{1}{s+1}r\,, & A_0 &= 1,\\ \theta(0) &= \mathbf{0} \,, & y(0) &= \HI{$\mathbf{0}$ \,, $\mathbf{10}$} \,, &
+  \gamma &= 20 \textbf{I}_6 \,, \\ r &= 10\textrm{sin}(t) + 25\textrm{sin}(2.1t) + 10\textrm{sin}(3.5t) \, .
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/tiltheta/sim03_y01y02.eps}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/modtheta/sim03_y01y02.eps}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/e0/sim03_y01y02.eps}
+\end{figure}
+
 % -----------------------------------------------------------------------------
 
 \subsection{Simulação \#3}
 
-Verificamos o comportamento do sistema para variações na planta e modelo.
+Verificamos o comportamento do sistema para variações na \textbf{função de transferência da planta} $P(s)$.
 
 \bigskip
 
-\textbf{\underline{Simulação 3.1}: sistema de 2$^\text{a}$ ordem, planta}
+\textbf{\underline{Simulação 3.1}: sistema de 2$^\text{a}$ ordem}
 %
 \begin{align*}
-  y &= \frac{s+1}{s^2+4s+4}u\, \text{e} \frac{s+1}{s^2-4s+4}u\,,  &  y_m &=
-  \frac{1}{s+1}r\,, & \Lambda &= s+1,\\ \theta(0) &= 0 \,, & y(0) &= 0 \,, &
-  \gamma &= 20 \, \textbf{I}_4\,, \\ r &=
-  10\textrm{sin}(0.63t) + 25\textrm{sin}(4.5t) \, .
+  y &= \HI{$\frac{s+1}{s^2+4s+4}u$}\,, \HI{$\frac{2s+4}{s^2+7s+12}u$}\,,  &  y_m &=
+  \frac{1}{s+1}r\,, & A_0 &= 1,\\ \theta(0) &= \textbf{0} \,, & y(0) &= \textbf{0} \,, &
+  \gamma &= 20 \, \textbf{I}_4\,, \\ r &= 10\textrm{sin}(0.635t) + 25\textrm{sin}(4.567t) \, .
 \end{align*}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/en2yp1.eps} 
+  \includegraphics[width=12cm]{figs/tiltheta/sim02_P1P2.eps}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/en2yp2.eps} 
+  \includegraphics[width=12cm]{figs/modtheta/sim02_P1P2.eps}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/tiln2yp1.eps} 
+  \includegraphics[width=12cm]{figs/e0/sim02_P1P2.eps}
 \end{figure}
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=12cm]{figs/tiln2yp2.eps} 
-\end{figure}
-
-\textbf{\underline{Simulação 3.2}: sistema de 3$^\text{a}$ ordem, planta}
-
-\textbf{\underline{Simulação 3.3}: sistema de 2$^\text{a}$ ordem, modelo}
+\textbf{\underline{Simulação 3.2}: sistema de 3$^\text{a}$ ordem}
 %
 \begin{align*}
-  y &= \frac{s+1}{s^2+4s+4}u\, &  y_m &=
-  \frac{1}{s+1}r\, \text{e} \frac{1}{s+5}r\,,  & \Lambda &= s+1,\\ \theta(0) &=
-  0 \,, & y(0) &= 0 \,, & \gamma &= 20 \, \textbf{I}_4\,, \\ r &=
-  10\textrm{sin}(0.63t) + 25\textrm{sin}(4.5t) \, .
+  y &= \HI{$\frac{s^2+2s+1}{s^3+6s^2+12s+8}u$}\,, \HI{$\frac{2s^2+16s+32}{s^3+6s^2+11s+6}u$}\,,  &  y_m &=
+  \frac{1}{s+1}r\,, & A_0 &= 1,\\ \theta(0) &= \textbf{0} \,, & y(0) &= \textbf{0} \,, &
+  \gamma &= 20 \, \textbf{I}_6\,, \\ r &= 10\textrm{sin}(t) + 25\textrm{sin}(2.1t) + 10\textrm{sin}(3.5t) \, .
 \end{align*}
- 
+
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/en2ym1.eps} 
+  \includegraphics[width=12cm]{figs/tiltheta/sim03_P1P2.eps}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/en2ym2.eps} 
+  \includegraphics[width=12cm]{figs/modtheta/sim03_P1P2.eps}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/tiln2ym1.eps} 
+  \includegraphics[width=12cm]{figs/e0/sim03_P1P2.eps}
+\end{figure}
+
+% -----------------------------------------------------------------------------
+
+\subsection{Simulação \#4}
+
+Verificamos o comportamento do sistema para variações na \textbf{função de transferência do modelo de referência} $P_m(s)$.
+
+\bigskip
+
+\textbf{\underline{Simulação 4.1}: sistema de 2$^\text{a}$ ordem}
+%
+\begin{align*}
+  y &= \frac{s+1}{s^2+4s+4}u \,,  &  y_m &= \HI{$\frac{1}{s+1}r$}\,, \HI{$\frac{s+1}{s^2+5s+6}r$ (não SPR)}\,, & A_0 &= 1,\\ \theta(0) &= \textbf{0} \,, & y(0) &= \textbf{0} \,, &
+  \gamma &= 20 \, \textbf{I}_4\,, \\ r &= 10\textrm{sin}(0.635t) + 25\textrm{sin}(4.567t) \, .
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/tiltheta/sim02_Pm1Pm2.eps}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=12cm]{figs/tiln2ym2.eps} 
+  \includegraphics[width=12cm]{figs/modtheta/sim02_Pm1Pm2.eps}
 \end{figure}
 
-\textbf{\underline{Simulação 3.4}: sistema de 3$^\text{a}$ ordem, modelo}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/e0/sim02_Pm1Pm2.eps}
+\end{figure}
+
+\textbf{\underline{Simulação 4.2}: sistema de 3$^\text{a}$ ordem}
+%
+\begin{align*}
+  y &= \frac{s^2+2s+1}{s^3+6s^2+12s+8}u \,,  &  y_m &= \HI{$\frac{1}{s+1}r$}\,, \HI{$\frac{s^2+2s+1}{s^3+5.5s^2+8.5s+3}r$ (não SPR)}\,, & A_0 &= 1,\\ \theta(0) &= \textbf{0} \,, & y(0) &= \textbf{0} \,, &
+  \gamma &= 20 \, \textbf{I}_6\,, \\ & & r &= 10\textrm{sin}(t) + 25\textrm{sin}(2.1t) + 10\textrm{sin}(3.5t) \, .
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/tiltheta/sim03_Pm1Pm2.eps}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/modtheta/sim03_Pm1Pm2.eps}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figs/e0/sim03_Pm1Pm2.eps}
+\end{figure}

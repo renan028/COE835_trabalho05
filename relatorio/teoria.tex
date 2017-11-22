@@ -1,19 +1,19 @@
 %---------------------------------------------------------------------
-\section{MRAC direto}
+\section{MRAC direto ($n^* = 1$)}
 
 O controle adaptativo de modelo de referência (MRAC) é um método de controle
 adaptativo com uma fundação teórica rigorosa e sistemática, possui promissora e
 atraente perspectiva de aplicação, e seu projeto é simples e conciso. O objetivo
 do MRAC é garantir que a resposta de saída de um sistema controlado (planta) convirja para a
-resposta de um dado modelo de referência, dado que a planta possui parâmetros desconhecidos.
+resposta de um modelo de referência, dado que a planta possui parâmetros desconhecidos.
 Isto é feito através de uma lei de adaptação dos parâmetros do controlador que garante a estabilidade 
 do sistema em malha fechada e a \textit{limitação} dos parâmetros estimados.
 
 Considere um sistema linear invariante no tempo descrito pela equação
-diferencial (Eq. \ref{eq:planta}):
+diferencial:% (Eq. \ref{eq:planta}):
 %
 \begin{equation}
-P(s) \, [y](t) = Z(s) \, [u](t),
+P(s) \, [y(t)] = Z(s) \, [u(t)],
 \label{eq:planta}
 \end{equation}
 
@@ -21,35 +21,34 @@ onde $y(t) \in \mathbb{R}$ e $u(t) \in \mathbb{R}$ são os sinais medidos de
 saída e entrada do sistema, sendo:
 %
 \begin{gather}
-P(s) = s^n + p_{n-1}s^{n-1}+\ldots + p_1s+p_0\,\\
+P(s) = s^n + p_{n-1}s^{n-1}+\ldots + p_1s+p_0\,,\\
 Z(s) = z_ms^m + z_{m-1}s^{m-1}+\ldots + z_1s+z_0 \,,
 \label{eq:poly}
 \end{gather}
 %
 os polinômios em $s$, com $s$ sendo o operador de diferencial
-$s[x](t)=\dot{x}(t)$. $p_i$, $i = 0,1,\ldots,n-1$ e $z_i$, $i=0,1,\ldots,m$ ($n>m$) são os parâmetros desconhecidos da planta.
+$s[x(t)]=\dot{x}(t)$. $p_i$, $i = 0,1,\ldots,n-1$ e $z_i$, $i=0,1,\ldots,m$ ($n>m$) são os parâmetros desconhecidos da planta.
 
 
-O objetivo do controle é: dado um modelo de referência, descrito como
-
+Dado um modelo de referência descrito como:
+%
 \begin{equation}
 P_m(s)[y_m](t) = r(t),
 \end{equation}
-
+%
 onde $P_m(s)$ é um polinômio estável mônico e $r(t)$ é a entrada de referência
-limitada, encontrar uma lei de controle $u(t)$ tal que todo o sistema de malha
-fechada produza sinais limitados e a saída da planta $y(t)$ rastreie o modelo
-de referência $y_m(t)$ assintoticamente. A estrutura exige algumas premissas:
+limitada, o objetivo do controle é encontrar uma lei de controle $u(t)$ tal que todo o sistema de malha
+fechada produza sinais limitados e a saída da planta $y(t)$ rastreie assintoticamente o modelo de referência $y_m(t)$. A estrutura exige algumas premissas:
 \begin{enumerate}
-  \item $Z(s)$ é um polinômio estável (planta é de fase mínima);
+  \item $Z(s)$ é um polinômio estável (a planta é de fase mínima);
   \item O sinal de $k_p$ é conhecido;
-  \item O grau relativo da planta é conhecido;
-  \item A ordem da planta é conhecida.
-	\item O modelo de referencia é dado por uma função de transferência SPR.
+  \item O grau relativo da planta é conhecido, e no caso deste trabalho, é igual a um ($n^* = 1$);
+  \item A ordem da planta ($n$) é conhecida.
+	\item O modelo de referencia é dado por uma função de transferência $P_m(s)$ que é SPR.
 \end{enumerate}
 
 A estrutura do controlador é 2DOF, como pode ser visto na figura
-\ref{mrac}. Escolhe-se então um polinômio estável $\Lambda(s) =
+\ref{mrac}. Escolhe-se então um polinômio do observador $A_0(s)$ de modo que se obtenha um polinômio estável $\Lambda(s) =
 s^n+\lambda_{n-1}s^{n-1}+\ldots+\lambda_1s+\lambda_0$ para filtrar a entrada e a
 saída da planta com o filtro $\frac{1}{\Lambda(s)}$. A equação do controlador
 é descrita como:
@@ -59,7 +58,7 @@ y(t)+ \theta_{2n} r(t),
 \end{equation}
 
 onde o filtro é descrito pela realização de estados:
-
+%
 \begin{gather}
 \dot{\omega}_1(t) = A_\lambda \, \omega_1(t) + bu(t)\,,\\
 \dot{\omega}_2(t) = A_\lambda \, \omega_2(t) + by(t)\,,
@@ -95,11 +94,10 @@ A_\lambda =
   \label{mrac} 
 \end{figure}
 
-Os valores ideais para o controle $\theta^*$ podem ser obtidos como já
-descrito no trabalho 4, se os parâmetros da planta fossem conhecidos. Como não é
-o caso, consideramos $\theta$ como uma estimativa dos parämetros ideais e
-formulamos a lei de controle:
-
+Os valores ideais para o controle $\theta^*$ são obtidos pelo procedimento descrito no trabalho 4, dados os parâmetros da planta conhecidos. Como não é
+o caso, consideramos $\theta$ como uma estimativa dos parâmetros ideais e
+formulamos a seguinte lei de controle:
+%
 \begin{gather}
 u(t) = \theta^\intercal\omega, \\
 \omega(t) = \left[\omega_1(t)^\intercal \quad y(t) \quad \omega_2(t)^\intercal
@@ -107,14 +105,14 @@ u(t) = \theta^\intercal\omega, \\
 \theta = \left[\theta_1 \quad \theta_n \quad \theta_2 \quad \theta_{2n}\right]
 \end{gather}
 
-Definindo o erro como $e(t) = y(t) - y_m(t)$, é possível demonstrar por
-Lyapunov que, variando $\theta$ através da lei de adaptação
-
+Definindo o erro de saída como $e(t) = y(t) - y_m(t)$, é possível demonstrar por
+Lyapunov que, variando $\theta$ através da lei de adaptação:
+%
 \begin{equation}
 \dot{\theta}(t) = -\textrm{sign}[k_p] \, \Gamma \, \omega(t) \, e(t),
 \end{equation}
 %
-o erro converge assintoticamente para zero, quando $\Gamma =
+o erro converge assintoticamente para zero, em que $\Gamma =
 \Gamma^\intercal > 0$ é uma matriz de ganhos positiva definida.
 
 Neste trabalho, serão consideradas plantas de segunda e terceira ordens com grau

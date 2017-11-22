@@ -9,7 +9,7 @@ PRINT = true;
 %% 2nd order system
 
 %Simulation time
-tfinal = 100;
+tfinal = 500;
 
 %Reference
 w = [0.63493 4.5669];
@@ -31,7 +31,7 @@ gP_1 = length(Dp_1) - 1; % system order
 
 %Pm
 Nm_1 = [1];
-Dm_1 = [1 5];
+Dm_1 = [1 1];
 km_1 = 1;
 Pm_1 = tf(km_1*Nm_1,Dm_1);
 gPm_1 = length(Dm_1)-1;
@@ -40,7 +40,7 @@ gPm_1 = length(Dm_1)-1;
 y0_1  = 0;
 
 %Adaptation gain
-gamma_1 = 10;
+gamma_1 = 20;
 
 %--------------- Second set of parameters ----------------
 
@@ -62,14 +62,14 @@ gPm_2 = length(Dm_2)-1;
 y0_2  = 10;
 
 %Adaptation gain
-gamma_2 = 5;
+gamma_2 = 1;
 
 run sim_mrac.m;
 
 %% 3rd order system
 
 %Simulation time
-tfinal = 100;
+tfinal = 500;
 
 %Reference
 w = [1 2.1 3.5];
@@ -92,7 +92,7 @@ gP_1 = length(Dp_1) - 1; % system order
 
 %Pm
 Nm_1 = [1];
-Dm_1 = [1 10];
+Dm_1 = [1 1];
 km_1 = 1;
 Pm_1 = tf(km_1*Nm_1,Dm_1);
 gPm_1 = length(Dm_1)-1;
@@ -101,7 +101,7 @@ gPm_1 = length(Dm_1)-1;
 y0_1  = 0;
 
 %Adaptation gain
-gamma_1 = 10;
+gamma_1 = 20;
 
 %--------------- Second set of parameters ----------------
 
@@ -123,6 +123,6 @@ gPm_2 = length(Dm_2)-1;
 y0_2  = 10;
 
 %Adaptation gain
-gamma_2 = 5;
+gamma_2 = 1;
 
 run sim_mrac.m;
